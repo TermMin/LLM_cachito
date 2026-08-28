@@ -1,0 +1,26 @@
+[project]
+name = "cachito"
+version = "0.1.0"
+description = "抓包分析 Cachito 玩具的 BLE 广播协议，用裸 HCI 复现指令，并包成 MCP server"
+requires-python = ">=3.10"
+
+# 核心（protocol / hci / sniff / analyze / control）零依赖：
+# 只用 stdlib + ctypes，不需要 bleak，也不需要 bluez。
+dependencies = []
+
+[project.optional-dependencies]
+# MCP server 才需要。代码兼容 mcp 1.x 和 2.x。
+mcp = ["mcp[cli]>=2.0"]
+
+[project.scripts]
+cachito-sniff = "cachito.sniff:main"
+cachito-analyze = "cachito.analyze:main"
+cachito-control = "cachito.control:main"
+cachito-mcp = "cachito.mcp_server:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["cachito"]

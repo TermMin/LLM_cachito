@@ -1,0 +1,16 @@
+# 重建运行环境：
+#     conda env create -f environment.yml
+#     conda activate cachito
+#
+# 注意：抓包 / 分析 / 控制这三块**零第三方依赖**（纯 stdlib + ctypes），
+# 只要有 Python 就能跑。下面的 mcp 只是 MCP server 需要。
+name: cachito
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      # mcp 2.x 把 FastMCP 改名成了 MCPServer；代码里做了 1.x/2.x 兼容，
+      # 两个大版本都能跑。想固定在旧 API 就改成 'mcp[cli]<2'。
+      - mcp[cli]>=2.0

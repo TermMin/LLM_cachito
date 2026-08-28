@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# 抓包数据和配置里带你的配对 ID —— 那是设备身份，别提交
+captures/*.jsonl
+device.json
